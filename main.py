@@ -54,6 +54,7 @@
 import streamlit as st
 from streamlit_webrtc import webrtc_streamer
 import cv2
+import av
 import face_recognition
 
 st.title("Face Detection")
@@ -62,17 +63,18 @@ st.title("Face Detection")
 def callback(frame):
     img = frame.to_ndarray(format="bgr24")
 
-    img = cv2.cvtColor(cv2.Canny(img, 100, 200), cv2.COLOR_GRAY2BGR)
+    # img = cv2.cvtColor(cv2.Canny(img, 100, 200), cv2.COLOR_GRAY2BGR)
+    face_locations = face_recognition.face_locations(img)
+    # cv2.rectangle(frame, (left, top), (right, bottom), (0, 0,  
+        # 255), 2)
 
     return av.VideoFrame.from_ndarray(img, format="bgr24")
 
 
 webrtc_streamer(key="example", video_frame_callback=callback)
-# x = webrtc_streamer(key="example")
-# x1 =  x[:, :, ::-1]
-# face_locations = face_recognition.face_locations(x)
-# for top, right, bottom, left in face_locations:
-# Draw a box around the face
-    # cv2.rectangle(x, (left, top), (right, bottom), (0, 0, 255), 2)
+#     rgb_frame = frame[:, :, ::-1]
+#     # Find all the faces in the current frame of video
+#     for top, right, bottom, left in face_locations:
+#         # Draw a box around the face
 
 
