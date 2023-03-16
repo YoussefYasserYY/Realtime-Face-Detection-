@@ -58,7 +58,17 @@ import face_recognition
 
 st.title("Face Detection")
 # Find all the faces in the current frame of video
-x = webrtc_streamer(key="example")
+
+def callback(frame):
+    img = frame.to_ndarray(format="bgr24")
+
+    img = cv2.cvtColor(cv2.Canny(img, 100, 200), cv2.COLOR_GRAY2BGR)
+
+    return av.VideoFrame.from_ndarray(img, format="bgr24")
+
+
+webrtc_streamer(key="example", video_frame_callback=callback)
+# x = webrtc_streamer(key="example")
 # x1 =  x[:, :, ::-1]
 # face_locations = face_recognition.face_locations(x)
 # for top, right, bottom, left in face_locations:
