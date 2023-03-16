@@ -1,0 +1,4 @@
+streamlit
+face_recognition
+streamlit_webrtc
+cv2
