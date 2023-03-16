@@ -2,4 +2,4 @@ streamlit==1.20.0
 streamlit-webrtc==0.45.0
 cmake==3.26.0
 dlib==19.24.0
-opencv_contrib=4.0.1
+opencv_contrib==4.0.1
