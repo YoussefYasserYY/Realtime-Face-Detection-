@@ -1,6 +1,6 @@
-import streamlit as st
-from streamlit_webrtc import webrtc_streamer
-import cv2
+# import streamlit as st
+# from streamlit_webrtc import webrtc_streamer
+# import cv2
 import av
 # import face_recognition
 
@@ -43,8 +43,8 @@ import streamlit as st
 
 # ret, im = camera.read()
 
-st.title("Webcam Live Feed")
-run = st.checkbox('Run')
+st.title("Video stream")
+run = st.checkbox('start')
 FRAME_WINDOW = st.image([])
 camera = cv2.VideoCapture(0)
 
