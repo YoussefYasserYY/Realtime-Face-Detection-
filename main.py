@@ -1,27 +1,3 @@
-
-# webrtc_streamer(key="example")
-
-
-# while True:
-#     # Grab a single frame of video
-#     ret, frame = cap.read()
-#     # Convert the image from BGR color (which OpenCV uses) to RGB   
-#     # color (which face_recognition uses)
-#     rgb_frame = frame[:, :, ::-1]
-#     # Find all the faces in the current frame of video
-#     face_locations = face_recognition.face_locations(rgb_frame)
-#     for top, right, bottom, left in face_locations:
-#         # Draw a box around the face
-#         cv2.rectangle(frame, (left, top), (right, bottom), (0, 0,  
-#         255), 2)
-#     # Display the resulting image
-#     # cv2.imshow('Video', frame)
-#     st.video(frame)
-    
-
-
-
-
 import streamlit as st
 from streamlit_webrtc import webrtc_streamer
 import cv2
@@ -46,21 +22,26 @@ st.title("Face Detection")
 #     for top, right, bottom, left in face_locations:
 #         img = cv2(cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2))
 #     return av.VideoFrame.from_ndarray(img, format="bgr24")
-def callback(frame):
-    img = frame.to_ndarray()
+# def callback(frame):
+#     img = frame.to_ndarray()
 
-    img = cv2.cvtColor(cv2.Canny(img, 100, 200), cv2.COLOR_GRAY2BGR)
-    st.image(frame)
-    # rgb_frame = frame[:, :, ::-1]
-    # face_locations = face_recognition.face_locations(rgb_frame)
+#     img = cv2.cvtColor(cv2.Canny(img, 100, 200), cv2.COLOR_GRAY2BGR)
+#     st.image(frame)
+#     # rgb_frame = frame[:, :, ::-1]
+#     # face_locations = face_recognition.face_locations(rgb_frame)
     
-    # for top, right, bottom, left in face_locations:
-        # img = cv2(cv2.rectangle(rgb_frame, (left, top), (right, bottom), (0, 0, 255), 2))
+#     # for top, right, bottom, left in face_locations:
+#         # img = cv2(cv2.rectangle(rgb_frame, (left, top), (right, bottom), (0, 0, 255), 2))
     
-    # x = av.img.VideoFrame(1920, 1080, 'rgb24')
-    return av.VideoFrame.from_ndarray(img)
+#     # x = av.img.VideoFrame(1920, 1080, 'rgb24')
+#     return av.VideoFrame.from_ndarray(img)
 
-webrtc_streamer(key="example", video_frame_callback=callback)
+# webrtc_streamer(key="example", video_frame_callback=callback)
 
+
+video_file = open('myvideo.mp4', 'rb')
+video_bytes = video_file.read()
+
+st.video(video_bytes)
 
 
