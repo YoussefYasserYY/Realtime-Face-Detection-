@@ -26,7 +26,7 @@ import streamlit as st
 from streamlit_webrtc import webrtc_streamer
 import cv2
 import av
-import face_recognition
+# import face_recognition
 
 st.title("Face Detection")
 # Find all the faces in the current frame of video
