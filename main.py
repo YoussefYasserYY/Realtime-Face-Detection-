@@ -38,51 +38,51 @@
 
 # webrtc_streamer(key="example", video_frame_callback=callback)
 
-# import cv2
-# import streamlit as st
-
-# # ret, im = camera.read()
-
-# st.title("Video stream")
-# run = st.checkbox('start')
-# FRAME_WINDOW = st.image([])
-# camera = cv2.VideoCapture(0)
-
-# while run:
-#     _, frame = camera.read()
-#     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-#     FRAME_WINDOW.image(frame)
-# else:
-#     st.write('Stopped')
-
-
-
+import cv2
 import streamlit as st
-from streamlit_webrtc import webrtc_streamer
-import cv2 
-import av
+import acapture
+
+# ret, im = camera.read()
+
+st.title("Video stream")
+run = st.checkbox('start')
+FRAME_WINDOW = st.image([])
+camera = acapture.open(0)
+
+while run:
+    _, frame = camera.read()
+    # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    FRAME_WINDOW.image(frame)
+else:
+    st.write('Stopped')
 
 
-st.title("live stream")
+
+# import streamlit as st
+# from streamlit_webrtc import webrtc_streamer
+# import cv2 
+# import av
 
 
-class VideoProcessor:
-    def __init__(self) -> None:
-        self.threshold1 = 100
-        self.threshold2 = 200
-
-    def recv(self, frame):
-        img = frame.to_ndarray(format="bgr24")
-
-        img = cv2.cvtColor(cv2.COLOR_GRAY2BGR)
-
-        return av.VideoFrame.from_ndarray(img, format="bgr24")
+# st.title("live stream")
 
 
-ctx = webrtc_streamer(
-    key="example",
-    video_processor_factory=VideoProcessor,
-    rtc_configuration={
-        "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
-    }
-)
+# class VideoProcessor:
+#     def __init__(self) -> None:
+#         self.threshold1 = 100
+#         self.threshold2 = 200
+
+#     def recv(self, frame):
+#         img = frame.to_ndarray(format="bgr24")
+
+#         img = cv2.cvtColor(cv2.COLOR_GRAY2BGR)
+
+#         return av.VideoFrame.from_ndarray(img, format="bgr24")
+
+
+# ctx = webrtc_streamer(
+#     key="example",
+#     video_processor_factory=VideoProcessor,
+#     rtc_configuration={
+#         "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
+#     }
